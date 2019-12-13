@@ -26,5 +26,7 @@ void ROSNode::publish(std::vector<float> ranges) {
 }
 
 void cmdvel_cb(const geometry_msgs::Twist::ConstPtr& msg) {
-    device.sendvel(msg->linear.x, msg->linear.y);
+    // (linear.x[m/s]±chasis_radius[m]*angular.z[rad/s])/wheel_radius[m]/omega_max
+    device.sendvel((msg->linear.x+chasis_radius*msg->angular.z)/wheel_radius/max_omega,
+                   (msg->linear.x-chasis_radius*msg->angular.z)/wheel_radius/max_omega);
 }

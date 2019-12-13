@@ -11,7 +11,6 @@
 
 #include <iostream>
 #include <cstdlib>
-#include <cmath>
 
 std::vector<std::array<float, 2>> points = {};
 Device device;
@@ -70,7 +69,6 @@ int main() {
         points.push_back({distance/300.0f*sinf32(2.0*pos*M_PI/45.0), distance/300.0f*cosf32(2.0*pos*M_PI/45.0)});
         if (points.size() > 14) { send_ready = true; }
         //std::cout<<points.size()<<" "<<pos<<" "<<distance<<std::endl;
-        device.sendvel(0.5, -0.5);
     }
 
     return 0;

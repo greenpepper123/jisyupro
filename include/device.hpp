@@ -11,8 +11,13 @@
 #include <unistd.h>
 #include <vector>
 #include <array>
+#include <cmath>
 
 #define SERIAL_PORT "/dev/ttyACM0"
+
+constexpr float chasis_radius = 0.05;
+constexpr float wheel_radius = 0.055;
+constexpr float max_omega = M_PI/3.0/0.25;
 
 extern std::vector<std::array<float, 2>> points;
 
@@ -33,3 +38,5 @@ public:
     ssize_t read();
     void sendvel(float, float);
 };
+
+char clampchar(float);
