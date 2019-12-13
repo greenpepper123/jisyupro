@@ -6,20 +6,21 @@
 
 extern Device device;
 
-#define DEG2RAD(x) ((x)*M_PI/180.)
-
 class ROSNode {
 public:
     Device device;
     ros::Publisher pub;
     sensor_msgs::LaserScan msg_to_send;
+    ros::Time first_point_stamp;
+    bool send_ready = false;
+    float step_angle = M_PI/3*0.04/0.25;
 
     ROSNode(Device dev) {
         device = dev;
     }
 
     void ros_init();
-    void publish();
+    void publish(std::vector<float> ranges);
 };
 
 void cmdvel_cb(const geometry_msgs::Twist::ConstPtr& msg);

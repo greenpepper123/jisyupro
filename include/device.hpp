@@ -14,7 +14,7 @@
 
 #define SERIAL_PORT "/dev/ttyACM0"
 
-extern std::vector<std::array<double, 2>> points;
+extern std::vector<std::array<float, 2>> points;
 
 class Device {
 public:
