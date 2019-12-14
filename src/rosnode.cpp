@@ -15,7 +15,7 @@ void ROSNode::ros_init() {
     ros::init(argc, NULL, "jisyupro");
     ros::NodeHandle n;
     pub = n.advertise<sensor_msgs::LaserScan>("scan", 1000);
-    ros::Subscriber sub = n.subscribe<geometry_msgs::Twist>("cmd_vel", 1000, cmdvel_cb);
+    sub = n.subscribe<geometry_msgs::Twist>("cmd_vel", 1000, cmdvel_cb);
 }
 
 void ROSNode::publish(std::vector<float> ranges) {

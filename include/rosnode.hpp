@@ -10,6 +10,7 @@ class ROSNode {
 public:
     Device device;
     ros::Publisher pub;
+    ros::Subscriber sub;
     sensor_msgs::LaserScan msg_to_send;
     ros::Time first_point_stamp;
     bool send_ready = false;
