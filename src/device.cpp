@@ -33,17 +33,27 @@ ssize_t Device::read() {
     return ::read(fd, buf, sizeof(buf));
 }
 
-char clampchar(float num) {
+char clampr(float num) {
     if (num >= 127) {
         return 127;
-    } else if (num <= -127) {
+    } else if (num <= 0) {
+        return 0;
+    } else {
+        return char(num);
+    }
+}
+
+char clampl(float num) {
+    if (num <= -127) {
         return -127;
+    } else if (num >= -1) {
+        return -1;
     } else {
         return char(num);
     }
 }
 
 void Device::sendvel(float rvel, float lvel) {
-    char twobyte[2] = {clampchar(64+64*rvel), clampchar(-64-64*lvel)};
+    char twobyte[2] = {clampr(64+64*rvel), clampl(-64-64*lvel)};
     ::write(fd, twobyte, 2);
 }
