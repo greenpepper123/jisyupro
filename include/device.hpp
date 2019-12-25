@@ -39,5 +39,5 @@ public:
     void sendvel(float, float);
 };
 
-char clampr(float);
-char clampl(float);
+signed char clampr(float);
+signed char clampl(float);

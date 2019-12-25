@@ -100,7 +100,7 @@ find_package(Threads REQUIRED)
 # )
 
 option(ENABLE_VIZ "Enable visualizer" ON)
-#set(ENABLE_VIZ OFF)
+set(ENABLE_VIZ OFF)
 if(ENABLE_VIZ)
   add_definitions(-DENABLE_VIZ)
   set(VIZ_SRC "src/visualizer.cpp")
