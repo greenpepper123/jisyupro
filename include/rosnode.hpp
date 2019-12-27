@@ -8,6 +8,7 @@
 extern Device device;
 extern double v_linear, v_angular, pos_x, pos_y, rot_z;
 extern ros::Time t_pre, t_now;
+extern tf::Transform transform;
 
 class ROSNode {
 public:

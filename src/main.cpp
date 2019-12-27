@@ -16,6 +16,7 @@ std::vector<std::array<float, 2>> points = {};
 Device device;
 double v_linear = 0.0, v_angular = 0.0, pos_x = 0.0, pos_y = 0.0, rot_z = 0.0;
 ros::Time t_pre, t_now;
+tf::Transform transform;
 
 int main() {
     // initialize
@@ -33,6 +34,11 @@ int main() {
 #ifdef ENABLE_ROS
     ROSNode node(device);
     node.ros_init();
+    tf::Transform tf_scan;
+    tf::Quaternion qq;
+    tf_scan.setOrigin(tf::Vector3(0.08, 0.0, 0.083));
+    qq.setRPY(0, 0, M_PI);
+    tf_scan.setRotation(qq);
     while (ros::ok()) {
         if (send_ready) {
             if (counting_up) {
@@ -90,6 +96,11 @@ int main() {
         }
         pos = pos_new;
         std::cout<<points.size()<<" "<<pos<<" "<<distance<<std::endl;
+
+	// Publish TF
+    	static tf::TransformBroadcaster br;
+    	br.sendTransform(tf::StampedTransform(transform, ros::Time::now(), "world", "base_footprint"));
+    	br.sendTransform(tf::StampedTransform(tf_scan, ros::Time::now(), "base_footprint", "base_scan"));
     }
 
     return 0;

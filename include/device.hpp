@@ -15,8 +15,8 @@
 
 #define SERIAL_PORT "/dev/ttyACM0"
 
-constexpr float chasis_radius = 0.05;
-constexpr float wheel_radius = 0.055;
+constexpr float chasis_radius = 0.055;
+constexpr float wheel_radius = 0.018;
 constexpr float max_omega = M_PI/3.0/0.25;
 
 extern std::vector<std::array<float, 2>> points;
