@@ -2,9 +2,12 @@
 #include "ros/ros.h"
 #include "sensor_msgs/LaserScan.h"
 #include "geometry_msgs/Twist.h"
+#include "tf/transform_broadcaster.h"
 #include "device.hpp"
 
 extern Device device;
+extern double v_linear, v_angular, pos_x, pos_y, rot_z;
+extern ros::Time t_pre, t_now;
 
 class ROSNode {
 public:

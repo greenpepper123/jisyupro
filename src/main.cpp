@@ -14,6 +14,8 @@
 
 std::vector<std::array<float, 2>> points = {};
 Device device;
+double v_linear = 0.0, v_angular = 0.0, pos_x = 0.0, pos_y = 0.0, rot_z = 0.0;
+ros::Time t_pre, t_now;
 
 int main() {
     // initialize

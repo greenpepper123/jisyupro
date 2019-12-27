@@ -29,4 +29,23 @@ void cmdvel_cb(const geometry_msgs::Twist::ConstPtr& msg) {
     // (linear.x[m/s]±chasis_radius[m]*angular.z[rad/s])/wheel_radius[m]/omega_max
     device.sendvel(-(msg->linear.x+chasis_radius*msg->angular.z)/wheel_radius/max_omega,
                    (msg->linear.x-chasis_radius*msg->angular.z)/wheel_radius/max_omega);
+    static tf::TransformBroadcaster br;
+    t_now = ros::Time::now();
+    ros::Duration dt = t_now - t_pre;
+    pos_x += v_linear * cosf64(rot_z) * dt.toSec();
+    pos_y += v_linear * sinf64(rot_z) * dt.toSec();
+    rot_z += v_angular * dt.toSec();
+    tf::Transform transform;
+    transform.setOrigin(tf::Vector3(pos_x, pos_y, 0.0));
+    tf::Quaternion q;
+    q.setRPY(0, 0, rot_z);
+    transform.setRotation(q);
+    br.sendTransform(tf::StampedTransform(transform, t_now, "world", "base_footprint"));
+    transform.setOrigin(tf::Vector3(0.08, 0.0, 0.083));
+    transform.setRotation(tf::Quaternion(0.0, 0.0, 0.0, 1.0));
+    br.sendTransform(tf::StampedTransform(transform, t_now, "base_footprint", "base_scan"));
+    // Store previous values
+    v_linear = msg->linear.x;
+    v_angular = msg->angular.z;
+    t_pre = t_now;
 }
