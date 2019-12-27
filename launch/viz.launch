@@ -1,5 +1,5 @@
 <launch>
-    <node pkg="jisyupro" name="base_link_publisher" type="tf_base.py" />
+    <!--node pkg="jisyupro" name="base_link_publisher" type="tf_base.py" /-->
     <node name="rviz"
       pkg="rviz" type="rviz"
       args="-d $(find jisyupro)/config/laserscan.rviz">
