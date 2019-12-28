@@ -34,8 +34,13 @@ int main() {
 #ifdef ENABLE_ROS
     ROSNode node(device);
     node.ros_init();
-    tf::Transform tf_scan;
+    tf::Transform tf_scan, tf_id;
     tf::Quaternion qq;
+    tf_id.setOrigin(tf::Vector3(0, 0, 0));
+    qq.setRPY(0, 0, 0);
+    tf_id.setRotation(qq);
+    transform.setOrigin(tf::Vector3(0, 0, 0));
+    transform.setRotation(qq);
     tf_scan.setOrigin(tf::Vector3(0.08, 0.0, 0.083));
     qq.setRPY(0, 0, M_PI);
     tf_scan.setRotation(qq);
@@ -99,7 +104,8 @@ int main() {
 
 	// Publish TF
     	static tf::TransformBroadcaster br;
-    	br.sendTransform(tf::StampedTransform(transform, ros::Time::now(), "world", "base_footprint"));
+    	br.sendTransform(tf::StampedTransform(transform, ros::Time::now(), "world", "odom"));
+    	br.sendTransform(tf::StampedTransform(tf_id, ros::Time::now(), "odom", "base_footprint"));
     	br.sendTransform(tf::StampedTransform(tf_scan, ros::Time::now(), "base_footprint", "base_scan"));
     }
 
