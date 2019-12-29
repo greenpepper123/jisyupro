@@ -104,8 +104,8 @@ int main() {
 
 	// Publish TF
     	static tf::TransformBroadcaster br;
-    	br.sendTransform(tf::StampedTransform(transform, ros::Time::now(), "world", "odom"));
-    	br.sendTransform(tf::StampedTransform(tf_id, ros::Time::now(), "odom", "base_footprint"));
+    	br.sendTransform(tf::StampedTransform(tf_id, ros::Time::now(), "world", "odom"));
+    	br.sendTransform(tf::StampedTransform(transform, ros::Time::now(), "odom", "base_footprint"));
     	br.sendTransform(tf::StampedTransform(tf_scan, ros::Time::now(), "base_footprint", "base_scan"));
     }
 
