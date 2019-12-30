@@ -1,5 +1,7 @@
 <launch>
-  <node pkg="map_server" type="map_server" name="map_server" args="$(find jisyupro)/map/map.yaml" />
+  <node pkg="map_server" type="map_server" name="map_server" args="$(find jisyupro)/map/realmap2.yaml">
+    <param name="frame_id" value="world"/>
+  </node>
   <node pkg="amcl" type="amcl" name="amcl" clear_params="true">
     <rosparam command="load" file="$(find jisyupro)/config/amcl.yaml" />
     <param name="base_frame_id" value="base_footprint" />
