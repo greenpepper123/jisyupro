@@ -1,5 +1,9 @@
 global_costmap:
   #global_frame: dtw_robot1/map
   #robot_base_frame: dtw_robot1/base_link
-  update_frequency: 2.0
+  update_frequency: 0.5
+  transform_tolerance: 2.0
   static_map: true
+
+laser_scan_sensor:
+  marking: false
