@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.5.1-0-g916b5db  Build Version: 1.5.7152.31018
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="jisyupro_model">
+  <link
+    name="base_footprint">
+    <inertial>
+      <origin
+        xyz="0.00168546745496115 0.000438433348243075 0.0496912000430039"
+        rpy="0 0 0" />
+      <mass
+        value="0.504881297772453" />
+      <inertia
+        ixx="0.000258243451949479"
+        ixy="-1.43356728549921E-06"
+        ixz="8.32990347568532E-08"
+        iyy="0.000317303071442943"
+        iyz="2.97481584917797E-07"
+        izz="0.000518462844424268" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jisyupro/meshes/base_footprint.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+            filename="package://jisyupro/meshes/base_footprint.STL" />
+      </geometry>
+    </collision>
+  </link>
+</robot>
